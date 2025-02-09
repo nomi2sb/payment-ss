@@ -92,7 +92,7 @@
     <div class="container">
         <div class="instructions">
             <h2>Payment Instructions</h2>
-            <p><span>1.</span> Send payment to <strong>03308136690</strong> via Easypaisa.</p>
+            <p><span>1.</span> Send payment to <strong>03476962488 , <b>Account Name : <b>Tahir Abbas</b></b> </strong> via Easypaisa.</p>
             <p><span>2.</span> Minimum payment is Rs. 100. Lower amounts will not be added.</p>
             <p><span>3.</span> After payment, fill the form and click Confirm.</p>
             <p><span>4.</span> You will be redirected to WhatsApp to send your details.</p>
@@ -101,7 +101,7 @@
 
         <div class="urdu">
             <h2>ادائیگی کی ہدایات</h2>
-            <p><span>۱.</span> ایزی پیسہ پر ادائیگی بھیجیں <strong>03308136690</strong>۔</p>
+            <p><span>۱.</span> ایزی پیسہ پر ادائیگی بھیجیں <strong>03476962488 , <b>اکاؤنٹ کا نام : <b>طاہر عباس</b> </b></strong>۔</p>
             <p><span>۲.</span> کم از کم رقم Rs. 100 بھیجیں۔ اس سے کم شامل نہیں کی جائے گی۔</p>
             <p><span>۳.</span> ادائیگی کے بعد فارم بھر کر تصدیق کریں۔</p>
             <p><span>۴.</span> آپ واٹس ایپ پر ری ڈائریکٹ ہو جائیں گے۔</p>
@@ -110,47 +110,43 @@
 
         <form id="paymentForm">
             <input type="text" name="username" placeholder="Your User Name" required>
-            <input type="text" name="accountName" placeholder="Your Account Name    (' js sy payment ki hai ')" required>
-            <input type="number" name="accountNumber" placeholder="Account Number      (' js sy payment ki hai ' )" required>
+            <input type="text" name="accountName" placeholder="Your Account Name (' js sy payment ki hai ')" required>
+            <input type="number" name="accountNumber" placeholder="Account Number (' js sy payment ki hai ')" required>
             <input type="number" name="amount" placeholder="Amount" required>
             <input type="text" name="transactionId" placeholder="Transaction ID" required>
             <button type="button" id="confirmBtn">Confirm</button>
         </form>
     </div>
+
     <script>
         document.getElementById('confirmBtn').addEventListener('click', function () {
-    const form = document.getElementById('paymentForm');
-    const amount = parseInt(form.amount.value, 10);
-    const transactionId = form.transactionId.value.trim();
+            const form = document.getElementById('paymentForm');
+            const amount = parseInt(form.amount.value, 10);
+            const transactionId = form.transactionId.value.trim();
 
-    // Validate amount
-    if (amount < 100) {
-        alert("Please enter an amount of Rs. 100 or more.");
-        return;
-    }
+            // Validate amount
+            if (amount < 100) {
+                alert("Please enter an amount of Rs. 100 or more.");
+                return;
+            }
 
-    // Validate transaction ID
-    if (transactionId.length !== 11 || isNaN(transactionId)) {
-        alert("Please enter a valid 11-digit Transaction ID.");
-        return;
-    }
+            // Validate transaction ID
+            if (transactionId.length !== 11 || isNaN(transactionId)) {
+                alert("Please enter a valid 11-digit Transaction ID.");
+                return;
+            }
 
-    // If valid, prepare WhatsApp message and redirect
-    const data = new FormData(form);
-    const details = Array.from(data.entries())
-        .map(([key, value]) => `*${key.toUpperCase()}*: ${value}`)
-        .join('%0A');
+            // Prepare WhatsApp message and redirect
+            const data = new FormData(form);
+            const details = Array.from(data.entries())
+                .map(([key, value]) => `*${key.toUpperCase()}*: ${value}`)
+                .join('%0A');
 
-    const whatsappLink = `https://wa.me/+923486006599?text=${details}`;
-    window.location.href = whatsappLink;
+            const whatsappLink = `https://wa.me/+923486006599?text=${details}`;
 
-    setTimeout(() => {
-        alert('Your payment will be verified and added to your account shortly.');
-    }, 1000);
-});
-
+            // Redirect immediately after validation
+            window.location.href = whatsappLink;
+        });
     </script>
-
-    
 </body>
 </html>
